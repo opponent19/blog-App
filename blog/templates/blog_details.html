@@ -1,0 +1,161 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <title>ZeeBlog|Home</title>
+</head>
+<body>
+    <div class="container">
+            <div class="row">
+                        <div class="col-md-12 mt-3">
+
+                            <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                                <div class="container-fluid">
+
+                                  <a class="navbar-brand" href="/"><strong>ZeeBlog</strong></a>
+
+                                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                  </button>
+
+                                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                      <li class="nav-item">
+                                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                                      </li>
+
+                                      <li class="nav-item">
+                                        <a class="nav-link" href="/about">About Us</a>
+                                      </li>
+
+                                      <li class="nav-item">
+                                        <a class="nav-link" href="/contact">Contact</a>
+                                      </li>
+
+                                      <li class="nav-item">
+                                        <a class="nav-link" href="/register">Register</a>
+                                      </li>
+
+                                      <li class="nav-item">
+                                        <a class="nav-link" href="/login">Login</a>
+                                      </li>
+
+                                      <li class="nav-item">
+                                        <a class="nav-link" href="/logout">Logout</a>
+                                      </li>
+
+                                      <li class="nav-item">
+                                        <a href="/userdashboard" class="nav-link" aria-disabled="true">Create Blog</a>
+                                      </li>
+
+                                      
+                                    </ul>
+                                    <form class="d-flex" role="search">
+                                      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                                      <button class="btn btn-outline-success" type="submit">Search</button>
+                                    </form>
+                                  </div>
+
+                                </div>
+                              </nav>
+                        </div><!--Navbar end-->
+            </div><!--header end-->
+
+
+<!--- Main section start -->
+        <div class="row mt-5"> 
+            <div class ="col-md-6 mx-auto">
+            {% for x in blog %}
+                <table class="table table-hover">
+                    
+                    <tr><th>Blog title</th><td>{{x.title}}</td></tr>
+                
+                    <tr><th>Blog Category</th>
+                        {% if x.cat == 1 %}
+                        <td>Python</td>
+                        {% elif x.cat == 2 %}
+                        <td>Data Science</td>
+                        {% elif x.cat == 3 %}
+                        <td>Data Analyst</td>
+                        {% else %}
+                        <td>Java</td>
+                        {% endif %}
+                    </tr>
+
+                    <tr><th>Blog details</th><td>{{x.details}}</td></tr>  
+
+                    <tr><td>
+                        {% if x.is_published %}
+                        <a href="/publish/U/{{x.id}}"><button class="btn btn-danger">Unpublish</button></a>
+                        {% else %}
+                        <a href="/publish/P/{{x.id}}"><button class="btn btn-danger">Publish</button></a>
+                        {% endif %}
+                        </td></tr>
+
+                       
+                               
+                           
+
+                        
+                        
+                    </table> 
+
+                    {% if pmsg %}
+                    <div class="alert alert-success" role="alert">
+                        {{pmsg}}
+                    </div>
+                    {% endif %}
+
+                    {% if umsg %}
+                    <div class="alert alert-success" role="alert">
+                        {{umsg}}
+                    </div>
+                    {% endif %}
+                    
+                    
+                    {% endfor %}
+
+
+
+
+
+
+
+            <!--footer start-->
+            <div class="row mt-5">
+                <div class="col-md-4">
+                  <h4>Address</h4>
+                  <hr>
+                  <p><Strong>ITvedant Education pvt ltd</strong></p>
+                  <p>4 floor </p>
+                  <p>thane </p>
+                  <p>mumbai</p>
+                  <p><strong>mobile no:</strong> +91-87878788787</p>
+                  <p><strong>Email:</strong>msy@gmail.com</p>
+                </div>
+
+                <div class="col-md-4">
+                  <h4>Quick Link</h4>
+                  <hr>
+                  <p><a href="" class="text-danger anchor"><strong>About Us</strong></a></p>
+                  <p><a href="" class="text-danger anchor"><strong>Contact</strong></a></p>
+                  <p><a href="" class="text-danger anchor"><strong>Programming</strong></a></p>
+                  <p><a href="" class="text-danger anchor"><strong>Data Science</strong></a></p>
+
+                </div>
+
+                <div class="col-md-4">
+                  <h4>Contact Us</h4>
+                  <hr>
+                  <p><a href="https://www.facebook.com/" target="_blank"><h4><i class="bi bi-facebook text-danger"></i></h4></a></p>
+                  <p><a href="https://www.twitter.com/" target="_blank"><h4><i class="bi bi-twitter text-danger"></i></h4></a></p>
+                  <p><a href="https://www.instagram.com/" target="_blank"><h4><i class="bi bi-instagram text-danger"></i></h4></a></p>
+                  <p><a href="https://www.linkedin.com/" target="_blank"><h4><i class="bi bi-linkedin text-danger"></i></h4></a></p>
+                
+                </div><!---Footer end-->
